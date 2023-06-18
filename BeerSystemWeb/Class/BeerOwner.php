@@ -55,6 +55,32 @@
 			
 			return $beers;
 		}
+
+		public function ViewAllVenue(){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('BeerSystem','Venue');
+			
+			// Get all roles
+			$beers = $collection->find(array('_id' => $this->_id));
+			
+			return $beers;
+		}
+
+		public function ViewAllPromotion(){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('BeerSystem','Promotion');
+			
+			// Get all roles
+			$beers = $collection->find(array('_id' => $this->_id));
+			
+			return $beers;
+		}
 		
 	}
 ?> 

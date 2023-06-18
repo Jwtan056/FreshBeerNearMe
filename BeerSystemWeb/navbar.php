@@ -14,7 +14,7 @@
     <nav class="navbar navbar-default">
     <div class="container-fluid" id="navbar">
         <ul class="nav navbar-nav">
-        <li><a href="userPage.php">
+        <li><a href="ViewAllUserAccounts.php">
             <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/group.png" alt="group"/>User</a></li>
 
         <li><a href="report.php">
@@ -23,10 +23,10 @@
         <li><a href="beerEntryReq.php">
             <img width="30" height="30" src="https://img.icons8.com/ios-filled/30/ask-question.png" alt="ask-question"/>Beer Entry Request</a></li>
         
-        <li><a href="beerListing.php">
+        <li><a href="ViewAllBeerListing.php">
             <img width="30" height="30" src="https://img.icons8.com/ios-filled/30/beer.png" alt="beer"/>Beer Listing</a></li>
 
-        <li><a href="venues.php">
+        <li><a href="ViewAllVenues.php">
             <img width="30" height="30" src="https://img.icons8.com/glyph-neue/30/performance.png" alt="performance"/>Venues</a></li>
         </ul>
         
