@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+    $path = $_SESSION['path'];
+
+    //Mongodb client configuration
+    require_once $path . '/vendor/autoload.php';
+
+    $user_id = $_SESSION['_id'];
+?>
 <head>
   <title>Navigate Bar</title>
   <meta charset="utf-8">
@@ -34,7 +42,7 @@
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <img width="30" height="30" src="https://img.icons8.com/material-rounded/30/user.png" alt="user"/><span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="loginPage.php">Logout</a></li>
+                <li><a href="http://localhost/BeerSystemWeb/loginPage.php"> Logout</a></li>
             </ul>
         </li>
         </ul>

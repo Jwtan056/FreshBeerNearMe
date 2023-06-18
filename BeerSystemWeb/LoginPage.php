@@ -5,6 +5,8 @@
     require_once __DIR__ . '/vendor/autoload.php';
 
     $_SESSION['_id'] = "";
+    $_SESSION['path'] = __DIR__;
+
     $error = ''; // Variable To Store Error Message
     if (isset($_POST['Login'])) {
         if (empty($_POST['_id']) || empty($_POST['Password'])) {
@@ -18,11 +20,11 @@
             if($user->CheckLogin()){
                 if($user->getRoles() == "1"){
                     $_SESSION['_id'] = $user->get_id();
-					header("Location: UserDashboard.php");
+					header("Location: SystemAdmin/UserDashboard.php");
 				}
 				else if($user->getRoles() == "2"){
                     $_SESSION['_id'] = $user->get_id();
-					header("Location: BeerOwnerDashboard.php");
+					header("Location: BeerOwner/BeerOwnerDashboard.php");
 				}
             }
         }
@@ -59,7 +61,7 @@
                 </br>
                 <input type='submit' value='Login' name='Login'>
             </form>
-            <form action='BeerOwnerRegistrationPage.php' method='POST'>
+            <form action='BeerOwner/BeerOwnerRegistrationPage.php' method='POST'>
 			    <p><input type='submit' value='Create Account' name='BeerOwnerRegisterationPage' ></p>
 		    </form>
         </div>

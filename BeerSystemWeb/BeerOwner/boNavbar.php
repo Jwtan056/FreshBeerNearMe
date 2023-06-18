@@ -14,13 +14,13 @@
     <nav class="navbar navbar-default">
     <div class="container-fluid" id="navbar">
         <ul class="nav navbar-nav">
-        <li><a href="boVenues.php">
+        <li><a href="ViewAllVenues.php">
             <img width="30" height="30" src="https://img.icons8.com/ios-filled/30/marker.png" alt="marker"/>Venues</a></li>
 
-        <li><a href="boBeers.php">
+        <li><a href="ViewAllBeer.php">
             <img width="30" height="30" src="https://img.icons8.com/ios-filled/30/beer.png" alt="beer"/>Beers</a></li>
 
-        <li><a href="boPromo.php">
+        <li><a href="ViewAllPromotions.php">
             <img width="30" height="30" src="https://img.icons8.com/ios-filled/30/discount--v1.png" alt="discount--v1"/>Promotions</a></li>
 
         </ul>
@@ -29,7 +29,7 @@
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <img width="30" height="30" src="https://img.icons8.com/material-rounded/30/user.png" alt="user"/><span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="LoginPage.php">Logout</a></li>
+                <li><a href="http://localhost/BeerSystemWeb/loginPage.php">Logout</a></li>
             </ul>
         </li>
         </ul>

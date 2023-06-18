@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+session_start();
+$path = $_SESSION['path'];
+
 //Inclusion of files
-require_once('Class/User.php');
-require_once('Class/SystemAdmin.php');
+require_once($path . '/Class/User.php');
+require_once($path . '/Class/BeerOwner.php');
 
 //Mongodb client configuration
-require_once __DIR__ . '/vendor/autoload.php';
+require_once $path . '/vendor/autoload.php';
 
-session_start();
 $user_id = $_SESSION['_id'];
 
 ?>
@@ -20,16 +22,17 @@ $user_id = $_SESSION['_id'];
 </head>
 
 <body>
-    <?php include 'navbar.php' ?>
-
+    <?php include 'boNavbar.php' ?>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    
     <div class="container" id="homepage">
         <h1><?php echo "All Venues"?> </h1>
     </div>
 
     <table style="color: red" >    
     <?php
-        $SysAdmin = new SystemAdmin($_SESSION['_id']);
-        $AllVenues = $SysAdmin->ViewAllVenues();
+        $BO = new BeerOwner($_SESSION['_id']);
+        $AllVenues = $BO->ViewAllVenues();
 
         //From here for u to design
         foreach ($AllVenues as $Venue) {
@@ -40,5 +43,7 @@ $user_id = $_SESSION['_id'];
             echo $Venue['address'];
             }; ?> </td></tr>
     </table>
+
+    
 </body>
 </html>

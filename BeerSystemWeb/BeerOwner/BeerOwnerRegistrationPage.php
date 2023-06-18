@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
 <?php
+session_start();
+$path = $_SESSION['path'];
+
 //Inclusion of files
-require_once('Class/User.php');
-require_once('Class/BeerOwner.php');
+require_once($path . '/Class/User.php');
+require_once($path . '/Class/BeerOwner.php');
 
 //Mongodb client configuration
-require_once __DIR__ . '/vendor/autoload.php';
+require_once $path . '/vendor/autoload.php';
 
-//Session Handling
-session_start();
+$user_id = $_SESSION['_id'];
+
 ?>
 
 <head> 
@@ -41,7 +44,7 @@ session_start();
 			
 			if($beerowner->RegisterBeerOwner()){
 				print("success");
-				header("Location: LoginPage.php");
+				header("Location: $path . /LoginPage.php");
 			}
 		}
 		

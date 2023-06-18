@@ -43,7 +43,7 @@
 			return true;
 		}
 
-		public function ViewAllBeer(){
+		public function ViewAllBeers(){
 			// Database Connection
 			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
 			
@@ -51,12 +51,12 @@
 			$collection = $client->selectCollection('BeerSystem','Beer');
 			
 			// Get all roles
-			$beers = $collection->find(array('_id' => $this->_id));
+			$beers = $collection->find(array());
 			
 			return $beers;
 		}
 
-		public function ViewAllVenue(){
+		public function ViewAllVenues(){
 			// Database Connection
 			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
 			
@@ -64,9 +64,9 @@
 			$collection = $client->selectCollection('BeerSystem','Venue');
 			
 			// Get all roles
-			$beers = $collection->find(array('_id' => $this->_id));
+			$venue = $collection->find(array('ownerid' => $this->_id));
 			
-			return $beers;
+			return $venue;
 		}
 
 		public function ViewAllPromotion(){
@@ -77,9 +77,9 @@
 			$collection = $client->selectCollection('BeerSystem','Promotion');
 			
 			// Get all roles
-			$beers = $collection->find(array('_id' => $this->_id));
+			$promotion = $collection->find(array('ownerid' => $this->_id));
 			
-			return $beers;
+			return $promotion;
 		}
 		
 	}
