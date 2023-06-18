@@ -1,57 +1,73 @@
 <!-- Class for User -->
 <?php
 	class Venue {
-		
 		//Properties
-                protected $venuename;
-                protected $flavourprofile;
-                protected $origin;
-                protected $colour;
-                protected $additionalinfo;
-                
-		
+        protected $_id;
+		protected $address;
+		protected $contact;
+		protected $opening;
+		protected $beer;
+		protected $promotionid;
+		protected $ownerid;
+
 		//Default constructor
-		public function __construct($venuename){
-			$this->venuename = $venuename;
+		public function __construct($_id){
+			$this->__construct($_id);
+		}
+		
+		//Mutator method
+		public function setAddress($address){
+			$this->address = $address;
 		}
 
-		//Accessor methods03
-		public function getVenuename(){
-			return $this->venuename;
+		public function setContect($contact){
+			$this->contact = $contact;
+		}
+
+		public function setOpening($opening){
+			$this->opening = $opening;
+		}
+
+		public function setBeer($beer){
+			$this->beer = $beer;
+		}
+
+		public function setPromotionid($promotionid){
+			$this->promotionid = $promotionid;
+		}
+
+		public function setOwnerid($ownerid){
+			$this->ownerid = $ownerid;
+		}
+
+		//Accessor method
+		public function get_id(){
+			return $this->_id;
 		}
 		
-		public function getFlavourProfile(){
-			return $this->flavourprofile;
+		//Mutator method
+		public function getAddress(){
+			return $this->address;
+		}
+
+		public function getContact(){
+			return $this->contact;
+		}
+
+		public function getOpening(){
+			return $this->opening;
+		}
+
+		public function getBeer(){
+			return $this->beer;
+		}
+
+		public function getPromotionid(){
+			return $this->promotionid;
+		}
+
+		public function getOwnerid(){
+			return $this->ownerid;
 		}
                 
-                public function getOrigin(){
-			return $this->origin;
-		}
-		
-                public function getColour(){
-			return $this->colour;
-		}
-                
-                public function getAdditionalInfo(){
-			return $this->additionalinfo;
-		}
-                             		
-		//Mutator methods
-		public function setFlavourProfile($flavourprofile){
-			$this->flavourprofile = $flavourprofile;
-		}
-                
-                public function setOrigin($origin) {
-                        $this->origin = $origin;
-                }
-                
-                public function setColour ($colour) {
-                        $this->colour = $colour;
-                }
-		
-                public function setAdditionalInfo ($additionalinfo) {
-                        $this->additionalinfo = $additionalinfo;
-                }
-                
-	          
-			}
+}

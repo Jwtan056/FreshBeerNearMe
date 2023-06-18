@@ -1,24 +1,32 @@
 <?php
-session_start();
-require_once('Class/User.php');
-//require_once('Class/BeerOwner.php');
-require_once __DIR__ . '/vendor/autoload.php';
+    session_start();
+    require_once('Class/User.php');
+    //require_once('Class/BeerOwner.php');
+    require_once __DIR__ . '/vendor/autoload.php';
 
-$error = ''; // Variable To Store Error Message
-if (isset($_POST['submit'])) {
-    if (empty($_POST['_id']) || empty($_POST['Password'])) {
-        $error = "Please fill in this field.";
-    } 
-    else {
-        // check if it exist in database
-        $user = new User($_POST['_id']);
-        $user->setPassword($_POST['Password']);
+    $_SESSION['_id'] = "";
+    $error = ''; // Variable To Store Error Message
+    if (isset($_POST['Login'])) {
+        if (empty($_POST['_id']) || empty($_POST['Password'])) {
+            $error = "Please fill in this field.";
+        } 
+        else {
+            // check if it exist in database
+            $user = new User($_POST['_id']);
+            $user->setPassword($_POST['Password']);
 
-        if($user->CheckLogin()){
-            $_SESSION['role'] = $user->getRole();
+            if($user->CheckLogin()){
+                if($user->getRoles() == "1"){
+                    $_SESSION['_id'] = $user->get_id();
+					header("Location: UserDashboard.php");
+				}
+				else if($user->getRoles() == "2"){
+                    $_SESSION['_id'] = $user->get_id();
+					header("Location: BeerOwnerDashboard.php");
+				}
+            }
         }
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +42,7 @@ if (isset($_POST['submit'])) {
     <div id="main">
         <div id="login">
             <h2>Login</h2>
-            <form action="UserDashboard.php" method="POST">
+            <form action="LoginPage.php" method="POST">
                 <label> Username :</label>
                 <input id="name" name="_id" type="text">
                 <span>
@@ -49,8 +57,11 @@ if (isset($_POST['submit'])) {
                 </span>
                 </br>
                 </br>
-                <input name="submit" type="submit" value=" Login ">
+                <input type='submit' value='Login' name='Login'>
             </form>
+            <form action='BeerOwnerRegistrationPage.php' method='POST'>
+			    <p><input type='submit' value='Create Account' name='BeerOwnerRegisterationPage' ></p>
+		    </form>
         </div>
     </div>
 </body>

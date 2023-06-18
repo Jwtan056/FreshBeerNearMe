@@ -1,43 +1,64 @@
 <!-- Class for Beer Owner -->
 <?php
-	class Beer extends Venue{
-		private $businessname;
+	class Beer{
+		//Properties
+		protected $_id;
+		protected $origin;
+		protected $colour;
+		protected $venueid;
+		protected $additional;
+		protected $flavour;
 
 		//Default constructor
-		public function __construct($username){
-			parent::__construct($username);
+		public function __construct($_id){
+			$this->__construct($_id);
 		}
 		
 		//Mutator method
-		public function setFlavourProfile($flavourprofile){
-			$this->bflavourprofile = $flavourprofile;
+		public function setOrigin($origin){
+			$this->origin = $origin;
+		}
+
+		public function setColour($colour){
+			$this->colour = $colour;
+		}
+
+		public function setVenueid($venueid){
+			$this->venueid = $venueid;
+		}
+
+		public function setAdditional($additional){
+			$this->additional = $additional;
+		}
+
+		public function setFlavour($flavour){
+			$this->flavour = $flavour;
 		}
 		
 		//Accessor method
-		public function getFlavourProfile(){
-			return $this->flavourprofile;
-		}
-
-		//Register user account
-		public function AddBeer(){
-			// Database Connection
-			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
-			
-			// Selection of database and collection
-			$collection = $client->selectCollection('BeerSystem','Venue');
-			
-			//Insert into database
-			$insertuser = $collection->insertOne(array(
-				'username' => $this->username,
-                                'flavourprofile' => $this->flavourprofile,
-				'origin' => $this->origin,
-                                'colour' => $this->colour,
-                                'additionalinfo' => $this->additionalinfo,
-			));
-			
-			return true;
+		public function get_id(){
+			return $this->_id;
 		}
 		
+		//Mutator method
+		public function getOrigin(){
+			return $this->origin;
+		}
+
+		public function getColour(){
+			return $this->colour;
+		}
+
+		public function getVenueid(){
+			return $this->venueid;
+		}
+
+		public function getAdditional(){
+			return $this->additional;
+		}
+		public function getFlavour(){
+			return $this->flavour;
+		}		
 	}
 ?> 
 

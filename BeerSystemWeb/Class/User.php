@@ -139,16 +139,7 @@ class User
 		// Get all roles
 		$role = $collection->findOne(array('_id' => $this->_id));
 
-		if ($role != NULL and $role['profile'] == "1") {
-			return "1";
-
-		} 
-		else if ($role != NULL and $role['profile'] == "2") {
-			return "2";
-
-		} else {
-			return "0";
-		}
+		return $role['profile'];
 	}
 }
 ?>

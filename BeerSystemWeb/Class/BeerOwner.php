@@ -37,10 +37,23 @@
                 'profile' => "2",
                 'email' => $this->email,
                 'dob' => $this->dob,
-				'business name' =>$this->businessname,
+				'businessname' =>$this->businessname,
 			));
 			
 			return true;
+		}
+
+		public function ViewAllBeer(){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('BeerSystem','Beer');
+			
+			// Get all roles
+			$beers = $collection->find(array('_id' => $this->_id));
+			
+			return $beers;
 		}
 		
 	}

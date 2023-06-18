@@ -8,6 +8,8 @@ require_once('Class/BeerOwner.php');
 //Mongodb client configuration
 require_once __DIR__ . '/vendor/autoload.php';
 
+//Session Handling
+session_start();
 ?>
 
 <head> 
@@ -39,34 +41,12 @@ require_once __DIR__ . '/vendor/autoload.php';
 			
 			if($beerowner->RegisterBeerOwner()){
 				print("success");
-			}
-		}
-		
-		//User Login
-		else if(isset($_POST['Login'])){
-			$user = new User($_POST['_id']);
-			$user->setPassword($_POST['Password']);
-
-			if($user->CheckLogin()){ 
-				if($user->getRoles() == "1"){
-					header("Location: UserDashboard.php");
-				}
-
-				else if($user->getRoles() == "2"){
-					header("Location: BeerOwnerDashboard.php");
-				}
-			}
-			else {
-				echo '<script>alert(Invalid Login Details)</script>';
+				header("Location: LoginPage.php");
 			}
 		}
 		
 	?>
-
-	<?php
-		if(isset($_POST['BeerOwnerRegisterationPage'])){
-	?>
-		<form action='index.php' method='POST'>
+		<form action='BeerOwnerCreationPage.php' method='POST'>
 			<p>First Name:<input type='text' name='FirstName' required></p>
 			<p>Last Name:<input type='text' name='LastName' required></p>
 			<p>Gender:
@@ -84,21 +64,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 			
 			<p><input type='submit' value='Create account' name='RegisterAccount'></p>
 		</form>
-	<?php
-		}
-		else {
-	?>
-		<form action='index.php' method='POST'>
-			<p>Username:<input type='text' name='_id' required></p>
-			<p>Password:<input type='password' name='Password' required></p>
-			<p><input type='submit' value='Login' name='Login'></p>
-		</form>
-		<form action='index.php' method='POST'>
-			<p><input type='submit' value='Create Account' name='BeerOwnerRegisterationPage' ></p>
-		</form>
-	<?php
-		}
-	?>
 	</div>
 		
 </body>

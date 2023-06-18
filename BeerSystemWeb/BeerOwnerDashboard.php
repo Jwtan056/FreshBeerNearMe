@@ -13,7 +13,12 @@
     
     <div class="container" id="homepage">
         <link href="/FYP/style.css" rel="stylesheet" type="text/css">
-        <h1>Welcome Beer Owner!</h1>
+        <h1><h1><?php 
+        session_start();
+        $user_id = $_SESSION['_id'];
+        echo "Welcome $user_id!"?> </h1></h1>
     </div>
+
+    
 </body>
 </html>
