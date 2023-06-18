@@ -1,0 +1,129 @@
+/*--font design--*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+html,
+body {
+    font-family: 'Roboto Slab', Arial, sans-serif;
+    background-color: #333533;
+}
+
+#main {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+span {
+    color: red
+}
+
+h2 {
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    margin: 0px -40px;
+    padding: 15px;
+    font-size: 35px;
+}
+
+hr {
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    margin: 10px -40px;
+    margin-bottom: 30px
+}
+
+#login {
+    width: 400px;
+    background-color: #d6d6d6;
+    float: center;
+    border-radius: 10px;
+    border: solid #d6d6d6;
+    padding: 10px 40px 25px;
+    margin-top: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input[type=text],
+input[type=password],
+input[type=email] {
+    display: flex;
+    align-items: center;
+    background-color: #e8e8e8;
+    width: 95%;
+    padding: 10px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    padding-left: 5px;
+    font-size: 20px;
+    font-family: 'Roboto Slab', Arial, sans-serif;
+}
+
+label {
+    margin-right: 10px; /* Adjust the spacing between the label and input as needed */
+  }
+
+input[type=submit] {
+    width: 80%;
+    background-color: #ffd100;
+    border: 2px solid #ffd100;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    margin-left: 40px;
+    font-family: 'Roboto Slab', Arial, sans-serif;
+}
+
+input[value=Register] {
+    width: 80%;
+    background-color: #e8e8e8;
+    border: 2px solid #e8e8e8;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-left: 40px;
+    font-family: 'Roboto Slab', Arial, sans-serif;
+}
+
+/* beer owner register page */
+#register {
+    width: 1000px;
+    background-color: #d6d6d6;
+    float: center;
+    border-radius: 10px;
+    border: solid #d6d6d6;
+    padding: 10px 40px 25px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container label {
+    display:inline-block;
+    width:20px;
+    text-align:left;
+    flex:1;
+}
+.container input{
+    flex:1;
+}
+/* nav bar colour modifications */
+#navbar{
+    background-color: #d6d6d6;
+    font-size: medium;
+    color: black;
+}
+
+#users{
+    text-align: center;
+    font-size: large;
+}
+
+#homepage, h1{
+    text-align: center;
+    color: #d6d6d6;
+}
