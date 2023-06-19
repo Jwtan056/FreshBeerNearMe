@@ -36,13 +36,15 @@ $user_id = $_SESSION['_id'];
 
         //From here for u to design
         foreach ($AllPromotions as $Promotion) {
-            ?><tr><td><?php
-            echo $Promotion['_id']; ?> </td>
+            ?><tr> <form action="ViewAPromotion.php" method="POST"> 
+            <td><input id="name" name="_id" type="hidden" value="<?php echo $Promotion['_id']; ?>"><?php echo $Promotion['_id']; ?></td></tr>
             <td><?php
             echo $Promotion['name']; ?> </td>
             <td><?php
-            echo $Promotion['details']; 
-            }; ?> </td></tr>
+            echo $Promotion['details']; ?> </td>
+            <td><?php
+                echo '<form type="POST"><input type="submit" name="ViewAPromotion" value="View"></form>';
+            }; ?> </form></td></tr>
     </table>
 
     

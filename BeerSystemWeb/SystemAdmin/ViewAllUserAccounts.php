@@ -12,6 +12,12 @@ require_once($path . '/Class/SystemAdmin.php');
 require_once $path . '/vendor/autoload.php';
 
 $user_id = $_SESSION['_id'];
+
+if(isset($_POST['submit_btn']))
+{
+//whatever u need to do
+}
+
 ?>
 <head>
     <meta charset="UTF-8">
@@ -35,15 +41,17 @@ $user_id = $_SESSION['_id'];
 
         //From here for u to design
         foreach ($UserAccounts as $User) {
-            ?><tr><td><?php
-            echo $User['_id']; ?> </td>
+            ?><tr> <form action="ViewAUserAccount.php" method="POST">
+            <td><input id="name" name="_id" type="hidden" value="<?php echo $User['_id']; ?>"></td>
             <td><?php
             echo $User['firstname']; ?> </td>
             <td><?php
             echo $User['lastname']; ?> </td>
             <td><?php
-            echo $User['email']; 
-            }; ?> </td></tr>
+            echo $User['email']; ?> </td>
+            <td><?php
+            echo '<form type="POST"><input type="submit" name="ViewAUser" value="View"></form>';
+            }; ?> </form></td></tr>
     </table>
 </body>
 </html>

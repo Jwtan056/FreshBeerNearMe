@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
 <?php
+session_start();
+$path = $_SESSION['path'];
+
 //Inclusion of files
-require_once('Class/User.php');
-require_once('Class/BeerOwner.php');
+require_once($path . '/Class/User.php');
+require_once($path . '/Class/BeerOwner.php');
 
 //Mongodb client configuration
-require_once __DIR__ . '/vendor/autoload.php';
+require_once $path . '/vendor/autoload.php';
 
-//Session Handling
-session_start();
+$user_id = $_SESSION['_id'];
+
 ?>
 
 <head>
@@ -75,16 +78,8 @@ session_start();
 		<div id="register" class="container">
 			<form class="form-horizontal" role="form" action='BeerOwnerCreationPage.php' method='POST'>
 				<h2>Registration</h2>
-				<!-- testing -->
-				<div class="form-group">
-					<label for="firstName" class="col-sm-6 control-label">First Name</label>
-					<div class="col-sm-offset-6 col-sm-6">
-						<input type="text" id="firstName" class="form-control">
-					</div>
-				</div>
-				<!-- -->
-
-				<p>First Name:<input type='text' name='FirstName' required></p>
+				<p style="display: flex">First Name:
+				<div><input type='text' name='FirstName' required></div></p>
 				<p>Last Name:<input type='text' name='LastName' required></p>
 				<p>Gender:
 					<input type='radio' value='M' name='Gender' required>M

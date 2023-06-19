@@ -28,7 +28,7 @@ $user_id = $_SESSION['_id'];
         <h1><?php echo "All Beers"?> </h1>
     </div>
 
-    <table style="color: red" >    
+    <table style="color: white" >    
     <?php
         $SysAdmin = new SystemAdmin($_SESSION['_id']);
         $AllBeers = $SysAdmin->ViewAllBeers();
@@ -36,10 +36,14 @@ $user_id = $_SESSION['_id'];
 
         //From here for u to design
         foreach ($AllBeers as $Beer) {
-            ?><tr><td><?php
-            echo "Beer #$BeerCounter: " . $Beer['_id'];
-            $BeerCounter += 1;
-            }; ?> </td></tr>
+            ?><tr> <form action="ViewABeerListing.php" method="POST"> 
+            <td><?php 
+            //Theres a stupid nonsense here that cannot print beer name so imma comment it and fix next time
+            echo "Beer #$BeerCounter: " . $Beer['_id']?><input id="name" name="_id" type="hidden" value="<?php echo $Beer['_id']; ?>"></td>
+            <td><?php
+                $BeerCounter += 1;
+                echo '<form type="POST"><input type="submit" name="ViewABeer" value="View"></form>';
+            }; ?> </form></td></tr>
     </table>
 </body>
 </html>

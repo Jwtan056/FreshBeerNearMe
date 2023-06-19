@@ -35,12 +35,13 @@ $user_id = $_SESSION['_id'];
 
         //From here for u to design
         foreach ($AllVenues as $Venue) {
-            ?><tr><td><?php
-            echo $Venue['_id'];
-            ?> </td></tr>
+            ?><tr><form action="ViewAVenue.php" method="POST">
+            <td><input id="name" name="_id" type="hidden" value="<?php echo $Venue['_id']; ?>"><?php echo $Venue['_id']; ?></td></tr>
             <tr><td><?php
-            echo $Venue['address'];
-            }; ?> </td></tr>
+            echo $Venue['address']; ?> </td>
+            <td><?php
+                echo '<form type="POST"><input type="submit" name="ViewAVenue" value="View"></form>';
+            }; ?> </form></td></tr>
     </table>
 </body>
 </html>

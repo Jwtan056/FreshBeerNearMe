@@ -35,12 +35,16 @@ $user_id = $_SESSION['_id'];
         $AllBeers = $BO->ViewAllBeers();
         $BeerCounter = 1;
 
-        //From here for u to design
-        foreach ($AllBeers as $Beer) {
-            ?><tr><td><?php
-            echo "Beer #$BeerCounter: " . $Beer['_id'];
+       //From here for u to design
+       foreach ($AllBeers as $Beer) {
+        ?><tr> <form action="ViewABeer.php" method="POST"> 
+        <td><?php 
+        //Theres a stupid nonsense here that cannot print beer name so imma comment it and fix next time
+        echo "Beer #$BeerCounter: " . $Beer['_id']?><input id="name" name="_id" type="hidden" value="<?php echo $Beer['_id']; ?>"></td>
+        <td><?php
             $BeerCounter += 1;
-            }; ?> </td></tr>
+            echo '<form type="POST"><input type="submit" name="ViewABeer" value="View"></form>';
+        }; ?> </form></td></tr>
     </table>
 </body>
 </html>
