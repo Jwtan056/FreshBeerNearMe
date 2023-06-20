@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-session_start();
-$path = $_SESSION['path'];
+    session_start();
+    $path = $_SESSION['path'];
 
-//Inclusion of files
-require_once($path . '/Class/User.php');
-require_once($path . '/Class/BeerOwner.php');
+    //Inclusion of files
+    require_once($path . '/Class/User.php');
+    require_once($path . '/Class/BeerOwner.php');
 
-//Mongodb client configuration
-require_once $path . '/vendor/autoload.php';
+    //Mongodb client configuration
+    require_once $path . '/vendor/autoload.php';
 
-$user_id = $_SESSION['_id'];
+    $user_id = $_SESSION['_id'];
 
-$error = ''; // Variable To Store Error Message
+    $error = ''; // Variable To Store Error Message
     if (isset($_POST['ViewAVenue'])) {
         
         // check if it exist in database
@@ -21,7 +21,28 @@ $error = ''; // Variable To Store Error Message
         $Venue = $user->ViewAVenue($_POST['_id']);
     }
 
+    //Delete venue
+    else if(isset($_POST['DeleteAVenue'])) {
+        $user = new BeerOwner($_SESSION['_id']);
+        $DeleteSuccess = $user->DeleteAVenue($_POST['_id']);
+        if($DeleteSuccess == true){
+            echo '<script>alert("Delete Successful.")</script>';
+            header("Location: ViewAllVenues.php");
+        }
+        else{
+            echo '<script>alert("Delete Failed.")</script>';
+        }
+            
+    }
 ?>
+    
+<script>
+    function DeleteVenue() {
+        if (confirm("Confirm to delete?") == true) {
+        document.getElementById("submit-button").click();
+        }
+    }
+</script>
 
 <head>
     <meta charset="UTF-8">
@@ -37,8 +58,10 @@ $error = ''; // Variable To Store Error Message
         <h1>View A Venue</h1>
     </div>
 
-    <table style="color:white">
-    <?php foreach ($Venue as $VenueInfo) {
+    <table style="color:white"><form action="ViewAVenue.php" method="POST">
+    <?php foreach ($Venue as $VenueInfo) {?>
+         <input id="name" name="_id" type="hidden" value="<?php echo $VenueInfo['_id']; ?>">
+    <?php
         echo "<tr><td>Venue Name: " . $VenueInfo['_id'] . "</tr></td>";
         echo "<tr><td>Address: " . $VenueInfo['address'] . "</tr></td>";
         echo "<tr><td>Contact Number: " . $VenueInfo['contact'] . "</tr></td>";
@@ -108,7 +131,10 @@ $error = ''; // Variable To Store Error Message
             }
             echo "<tr><td>Location(x: $x,y: $y) </tr></td>";
         }     
+
+        echo '<tr><td><input type="button" value="Delete" onclick="DeleteVenue()"/></td></tr>';
+        echo '<tr><td><input type="submit" name="DeleteAVenue" id="submit-button" style="visibility: hidden;"/></td></tr>';
     }?> 
-    </table>
+    </form></table>
 </body>
 </html>

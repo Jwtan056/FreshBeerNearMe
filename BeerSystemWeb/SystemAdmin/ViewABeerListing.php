@@ -21,7 +21,28 @@ $error = ''; // Variable To Store Error Message
         $Beer = $user->ViewABeer($_POST['_id']);
     }
 
+//Delete Beer
+else if(isset($_POST['DeleteABeer'])) {
+    $user = new SystemAdmin($_SESSION['_id']);
+    $DeleteSuccess = $user->DeleteABeer($_POST['_id']);
+    if($DeleteSuccess == true){
+        echo '<script>alert("Delete Successful.")</script>';
+        header("Location: ViewAllBeerListing.php");
+    }
+    else{
+        echo '<script>alert("Delete Failed.")</script>';
+    }
+    
+}
 ?>
+
+<script>
+function DeleteBeer() {
+  if (confirm("Confirm to delete?") == true) {
+    document.getElementById("submit-button").click();
+  }
+}
+</script>
 
 <head>
     <meta charset="UTF-8">
@@ -37,8 +58,10 @@ $error = ''; // Variable To Store Error Message
         <h1>View A Beer</h1>
     </div>
 
-    <table style="color:white">
-    <?php foreach ($Beer as $BeerInfo) { 
+    <table style="color:white"><form action="ViewABeerListing.php" method="POST">
+    <?php foreach ($Beer as $BeerInfo) { ?>
+        <input id="name" name="_id" type="hidden" value="<?php echo $BeerInfo['_id']; ?>">
+    <?php
         echo "<tr><td>Beer Name: " . $BeerInfo['_id'] . "</tr></td>"; 
         echo "<tr><td>Origin: " . $BeerInfo['origin'] . "</tr></td>"; 
         echo "<tr><td>Colour: " . $BeerInfo['colour'] . "</tr></td>"; 
@@ -62,7 +85,9 @@ $error = ''; // Variable To Store Error Message
         } 
         echo "<tr><td>Addition Information: " . $BeerInfo['additional'] . "</tr></td>"; 
         echo "<tr><td>Flavour: " . $BeerInfo['flavour'] . "</tr></td>"; 
+        echo '<tr><td><input type="button" value="Delete" onclick="DeleteBeer()"/></td></tr>';
+        echo '<tr><td><input type="submit" name="DeleteABeer" id="submit-button" style="visibility: hidden;"/></td></tr>';
     }?> 
-    </table>
+    </form></table>
 </body>
 </html>

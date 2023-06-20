@@ -68,15 +68,22 @@ $user_id = $_SESSION['_id'];
 			$beerowner->setBusinessName($_POST['BusinessName']);
 			$beerowner->setPassword($_POST['Password']);
 
-			if ($beerowner->RegisterBeerOwner()) {
-				print("success");
-				header("Location: LoginPage.php");
+			try{
+				if ($beerowner->RegisterBeerOwner()) {
+					header("Location: http://localhost/BeerSystemWeb/loginPage.php");
+					echo '<script>alert("User Creation Success.")</script>';
+				}
 			}
+
+			catch(err){
+				echo '<script>alert("User Creation failed.")</script>';
+			}
+			
 		}
 
 		?>
 		<div id="register" class="container">
-			<form class="form-horizontal" role="form" action='BeerOwnerCreationPage.php' method='POST'>
+			<form class="form-horizontal" role="form" action='BeerOwnerRegistrationPage.php' method='POST'>
 				<h2>Registration</h2>
 				<p style="display: flex">First Name:
 				<div><input type='text' name='FirstName' required></div></p>

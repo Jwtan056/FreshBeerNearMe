@@ -14,14 +14,35 @@ require_once $path . '/vendor/autoload.php';
 $user_id = $_SESSION['_id'];
 
 $error = ''; // Variable To Store Error Message
-    if (isset($_POST['ViewAPromotion'])) {
-        
-        // check if it exist in database
-        $user = new BeerOwner($_SESSION['_id']);
-        $Promotions = $user->ViewAPromotion($_POST['_id']);
-    }
+if (isset($_POST['ViewAPromotion'])) {
+    
+    // check if it exist in database
+    $user = new BeerOwner($_SESSION['_id']);
+    $Promotions = $user->ViewAPromotion($_POST['_id']);
+}
 
+//Delete Promotion
+else if(isset($_POST['DeleteAPromotion'])) {
+    $user = new BeerOwner($_SESSION['_id']);
+    $DeleteSuccess = $user->DeleteAPromotion($_POST['_id']);
+    if($DeleteSuccess == true){
+        echo '<script>alert("Delete Successful.")</script>';
+        header("Location: ViewAllPromotions.php");
+    }
+    else{
+        echo '<script>alert("Delete Failed.")</script>';
+    }
+        
+    }
 ?>
+    
+<script>
+    function DeletePromotion() {
+        if (confirm("Confirm to delete?") == true) {
+            document.getElementById("submit-button").click();
+        }
+    }
+</script>
 
 <head>
     <meta charset="UTF-8">
@@ -37,8 +58,10 @@ $error = ''; // Variable To Store Error Message
         <h1>View A Promotion</h1>
     </div>
 
-    <table style="color:white">
-    <?php foreach ($Promotions as $Promotioninfo) { 
+    <table style="color:white"><form action="ViewAPromotion.php" method="POST">
+    <?php foreach ($Promotions as $Promotioninfo) { ?>
+         <input id="name" name="_id" type="hidden" value="<?php echo $Promotioninfo['_id']; ?>">
+    <?php
         echo "<tr><td>Promotion ID: " . $Promotioninfo['_id'] . "</tr></td>"; 
         echo "<tr><td>Promotion Name: " . $Promotioninfo['name'] . "</tr></td>"; 
         
@@ -98,7 +121,10 @@ $error = ''; // Variable To Store Error Message
         } 
 
         echo "<tr><td>Promotion Status: " . $Promotioninfo['status'] . "</tr></td>"; 
+
+        echo '<tr><td><input type="button" value="Delete" onclick="DeletePromotion()"/></td></tr>';
+        echo '<tr><td><input type="submit" name="DeleteAPromotion" id="submit-button" style="visibility: hidden;"/></td></tr>';
     }?> 
-    </table>
+    </form></table>
 </body>
 </html>

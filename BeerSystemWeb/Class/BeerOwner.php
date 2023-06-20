@@ -95,6 +95,25 @@
 			return $venue;
 		}
 
+		public function DeleteAVenue($venueid){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('BeerSystem','Venue');
+			
+			// Get all roles
+			$Venue = $collection->deleteOne(array('_id' => $venueid));
+			
+			if($Venue->getDeletedCount() == 1){
+				return true;
+			}
+			else{
+				return false;
+			}
+			
+		}
+
 		public function ViewAllPromotion(){
 			// Database Connection
 			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
@@ -119,6 +138,25 @@
 			$promotion = $collection->find(array('_id' => $pid,'ownerid' => $this->_id));
 			
 			return $promotion;
+		}
+
+		public function DeleteAPromotion($promotionid){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('BeerSystem','Promotion');
+			
+			// Get all roles
+			$promotion = $collection->deleteOne(array('_id' => $promotionid));
+			
+			if($promotion->getDeletedCount() == 1){
+				return true;
+			}
+			else{
+				return false;
+			}
+			
 		}
 		
 	}

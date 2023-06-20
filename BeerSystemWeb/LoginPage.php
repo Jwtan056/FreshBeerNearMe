@@ -1,14 +1,16 @@
 <?php
     session_start();
     require_once('Class/User.php');
-    //require_once('Class/BeerOwner.php');
     require_once __DIR__ . '/vendor/autoload.php';
 
     $_SESSION['_id'] = "";
     $_SESSION['path'] = __DIR__;
 
     $error = ''; // Variable To Store Error Message
+
+    //If post login function
     if (isset($_POST['Login'])) {
+        //Check whether fields empty
         if (empty($_POST['_id']) || empty($_POST['Password'])) {
             $error = "Please fill in this field.";
         } 
@@ -26,6 +28,10 @@
                     $_SESSION['_id'] = $user->get_id();
 					header("Location: BeerOwner/BeerOwnerDashboard.php");
 				}
+            }
+
+            else{
+                echo '<script>alert("Login failed.")</script>';
             }
         }
     }
