@@ -120,8 +120,7 @@ class User
 
 		if ($getuser != NULL and $getuser['password'] == $this->password) {
 			$this->profile = $getuser['profile'];
-			print($this->profile);
-			return true;
+			return ($this->profile);
 
 		} else {
 			return false;
@@ -129,17 +128,5 @@ class User
 
 	}
 
-	//Get the role of the person
-	public function getRoles()
-	{
-		// Connect to MongoDB
-		$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
-		$collection = $client->selectCollection('BeerSystem', 'User');
-
-		// Get all roles
-		$role = $collection->findOne(array('_id' => $this->_id));
-
-		return $role['profile'];
-	}
 }
 ?>

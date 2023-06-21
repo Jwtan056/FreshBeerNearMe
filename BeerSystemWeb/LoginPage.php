@@ -19,15 +19,14 @@
             $user = new User($_POST['_id']);
             $user->setPassword($_POST['Password']);
 
-            if($user->CheckLogin()){
-                if($user->getRoles() == "1"){
-                    $_SESSION['_id'] = $user->get_id();
-					header("Location: SystemAdmin/UserDashboard.php");
-				}
-				else if($user->getRoles() == "2"){
-                    $_SESSION['_id'] = $user->get_id();
-					header("Location: BeerOwner/BeerOwnerDashboard.php");
-				}
+            if($user->CheckLogin() == "1"){
+                $_SESSION['_id'] = $user->get_id();
+				header("Location: SystemAdmin/UserDashboard.php");
+            }
+
+            else if($user->CheckLogin() == "2"){
+                $_SESSION['_id'] = $user->get_id();
+                header("Location: BeerOwner/BeerOwnerDashboard.php");
             }
 
             else{
