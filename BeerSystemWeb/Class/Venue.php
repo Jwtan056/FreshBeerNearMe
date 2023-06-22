@@ -24,7 +24,7 @@
 			$this->address = $address;
 		}
 
-		public function setContect($contact){
+		public function setContact($contact){
 			$this->contact = $contact;
 		}
 
@@ -42,36 +42,6 @@
 
 		public function setOwnerid($ownerid){
 			$this->ownerid = $ownerid;
-		}
-
-		//Accessor method
-		public function get_id(){
-			return $this->_id;
-		}
-		
-		//Mutator method
-		public function getAddress(){
-			return $this->address;
-		}
-
-		public function getContact(){
-			return $this->contact;
-		}
-
-		public function getOpening(){
-			return $this->opening;
-		}
-
-		public function getBeer(){
-			return $this->beer;
-		}
-
-		public function getPromotionid(){
-			return $this->promotionid;
-		}
-
-		public function getOwnerid(){
-			return $this->ownerid;
 		}
                 
 		public function ViewAllVenues(){

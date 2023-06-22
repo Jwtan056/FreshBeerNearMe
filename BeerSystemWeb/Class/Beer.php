@@ -38,31 +38,6 @@
 		public function setFlavour($flavour){
 			$this->flavour = $flavour;
 		}
-		
-		//Accessor method
-		public function get_id(){
-			return $this->_id;
-		}
-		
-		//Mutator method
-		public function getOrigin(){
-			return $this->origin;
-		}
-
-		public function getColour(){
-			return $this->colour;
-		}
-
-		public function getVenueid(){
-			return $this->venueid;
-		}
-
-		public function getAdditional(){
-			return $this->additional;
-		}
-		public function getFlavour(){
-			return $this->flavour;
-		}		
 
 		public function ViewAllBeers(){
 			// Database Connection

@@ -20,7 +20,7 @@ $user_id = $_SESSION['_id'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Venues</title>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="../style.css" rel="stylesheet" type="text/css">
     <style>
         #saVenue {
             margin-left: auto;
@@ -57,7 +57,7 @@ $user_id = $_SESSION['_id'];
 
 <body>
     <?php include 'navbar.php' ?>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="../style.css" rel="stylesheet" type="text/css">
 
     <div class="container">
         <h1>

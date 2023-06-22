@@ -18,46 +18,6 @@ class Promotion
 
 	}
 
-	//Accessor methods
-	public function get_id()
-	{
-		return $this->_id;
-	}
-
-	public function getName()
-	{
-		return $this->name;
-	}
-
-	public function getTimePeriod()
-	{
-		return $this->timeperiod;
-	}
-
-	public function getDetails()
-	{
-		return $this->details;
-	}
-
-	public function getVenueid()
-	{
-		return $this->venueid;
-	}
-
-	public function getOwnerid()
-	{
-		return $this->ownerid;
-	}
-
-	public function getCondition()
-	{
-		return $this->condition;
-	}
-
-	public function getStatus()
-	{
-		return $this->status;
-	}
 	//Mutator methods
 	public function set_id($_id)
 	{
@@ -126,7 +86,7 @@ class Promotion
 		return $promotion;
 	}
 
-	public function DeleteAPromotion($promotionid){
+	public function DeleteAPromotion($pid){
 		// Database Connection
 		$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
 		
@@ -134,7 +94,7 @@ class Promotion
 		$collection = $client->selectCollection('BeerSystem','Promotion');
 		
 		// Get all roles
-		$promotion = $collection->deleteOne(array('_id' => $promotionid));
+		$promotion = $collection->deleteOne(array('_id' => $pid));
 		
 		if($promotion->getDeletedCount() == 1){
 			return true;
