@@ -1,39 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-session_start();
-$path = $_SESSION['path'];
+    session_start();
+    $path = $_SESSION['path'];
 
-//Inclusion of files
-require_once($path . '/Class/User.php');
-require_once($path . '/Class/SystemAdmin.php');
+    //Inclusion of files
+    require_once($path . '/Class/User.php');
+    require_once($path . '/Class/SystemAdmin.php');
+    require_once($path . '/Class/Venue.php');
 
-//Mongodb client configuration
-require_once $path . '/vendor/autoload.php';
+    //Mongodb client configuration
+    require_once $path . '/vendor/autoload.php';
 
-$user_id = $_SESSION['_id'];
+    $user_id = $_SESSION['_id'];
 
-$error = ''; // Variable To Store Error Message
-if (isset($_POST['ViewAVenue'])) {
-    
-    // check if it exist in database
-    $user = new SystemAdmin($_SESSION['_id']);
-    $Venue = $user->ViewAVenue($_POST['_id']);
-}
+    $error = ''; // Variable To Store Error Message
+    if (isset($_POST['ViewAVenue'])) {
+        
+        // check if it exist in database
+        $VenueObj = new Venue();
+        $Venue = $VenueObj->ViewAVenue($_POST['_id']);
+    }
 
-//Delete venue
-else if(isset($_POST['DeleteAVenue'])) {
-$user = new SystemAdmin($_SESSION['_id']);
-$DeleteSuccess = $user->DeleteAVenue($_POST['_id']);
-if($DeleteSuccess == true){
-    echo '<script>alert("Delete Successful.")</script>';
-    header("Location: ViewAllVenues.php");
-}
-else{
-    echo '<script>alert("Delete Failed.")</script>';
-}
-    
-}
+    //Delete venue
+    else if(isset($_POST['DeleteAVenue'])) {
+        $VenueObj = new Venue();
+        $DeleteSuccess = $VenueObj->DeleteAVenue($_POST['_id']);
+        if($DeleteSuccess == true){
+            echo '<script>alert("Delete Successful.")</script>';
+            header("Location: ViewAllVenues.php");
+        }
+        else{
+            echo '<script>alert("Delete Failed.")</script>';
+        }
+        
+    }
 ?>
 
 <script>

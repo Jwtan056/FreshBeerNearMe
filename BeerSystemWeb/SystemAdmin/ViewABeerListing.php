@@ -7,6 +7,7 @@ $path = $_SESSION['path'];
 //Inclusion of files
 require_once($path . '/Class/User.php');
 require_once($path . '/Class/SystemAdmin.php');
+require_once($path . '/Class/Beer.php');
 
 //Mongodb client configuration
 require_once $path . '/vendor/autoload.php';
@@ -16,15 +17,14 @@ $user_id = $_SESSION['_id'];
 $error = ''; // Variable To Store Error Message
     if (isset($_POST['ViewABeer'])) {
         
-        // check if it exist in database
-        $user = new SystemAdmin($_SESSION['_id']);
-        $Beer = $user->ViewABeer($_POST['_id']);
+        $BeerObj = new Beer();
+        $Beer = $BeerObj->ViewABeer($_POST['_id']);
     }
 
 //Delete Beer
 else if(isset($_POST['DeleteABeer'])) {
-    $user = new SystemAdmin($_SESSION['_id']);
-    $DeleteSuccess = $user->DeleteABeer($_POST['_id']);
+    $BeerObj = new Beer();
+    $DeleteSuccess = $Beer->DeleteABeer($_POST['_id']);
     if($DeleteSuccess == true){
         echo '<script>alert("Delete Successful.")</script>';
         header("Location: ViewAllBeerListing.php");

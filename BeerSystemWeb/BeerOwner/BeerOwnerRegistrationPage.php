@@ -68,16 +68,16 @@ $user_id = $_SESSION['_id'];
 			$beerowner->setBusinessName($_POST['BusinessName']);
 			$beerowner->setPassword($_POST['Password']);
 
-			try{
-				if ($beerowner->RegisterBeerOwner()) {
-					header("Location: http://localhost/BeerSystemWeb/loginPage.php");
-					echo '<script>alert("User Creation Success.")</script>';
-				}
+			
+			if ($beerowner->RegisterBeerOwner()) {
+				header("Location: ../loginPage.php");
+				echo '<script>alert("User Creation Success.")</script>';
 			}
 
-			catch(err){
-				echo '<script>alert("User Creation failed.")</script>';
+			else{
+				echo '<script>alert("User Creation failed. User cannot use an existing username")</script>';
 			}
+			
 			
 		}
 

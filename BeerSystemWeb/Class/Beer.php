@@ -1,4 +1,4 @@
-<!-- Class for Beer Owner -->
+<!-- Class for Beer -->
 <?php
 	class Beer{
 		//Properties
@@ -10,8 +10,12 @@
 		protected $flavour;
 
 		//Default constructor
-		public function __construct($_id){
-			$this->__construct($_id);
+		public function __construct(){
+			
+		}
+
+		public function set_id($_id){
+			$this->_id = $_id;
 		}
 		
 		//Mutator method
@@ -59,6 +63,51 @@
 		public function getFlavour(){
 			return $this->flavour;
 		}		
+
+		public function ViewAllBeers(){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('BeerSystem','Beer');
+			
+			// Get all roles
+			$Beers = $collection->find();
+			
+			return $Beers;
+		}
+
+		public function ViewABeer($beerid){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('BeerSystem','Beer');
+			
+			// Get all roles
+			$beer = $collection->find(array('_id' => $beerid));
+			
+			return $beer;
+		}
+
+		public function DeleteABeer($beerid){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('BeerSystem','Beer');
+			
+			// Get all roles
+			$beer = $collection->deleteOne(array('_id' => $beerid));
+			
+			if($beer->getDeletedCount() == 1){
+				return true;
+			}
+			else{
+				return false;
+			}
+			
+		}
 	}
 ?> 
 

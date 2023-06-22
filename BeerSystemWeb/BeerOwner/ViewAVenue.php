@@ -7,6 +7,7 @@
     //Inclusion of files
     require_once($path . '/Class/User.php');
     require_once($path . '/Class/BeerOwner.php');
+    require_once($path . '/Class/Venue.php');
 
     //Mongodb client configuration
     require_once $path . '/vendor/autoload.php';
@@ -17,14 +18,14 @@
     if (isset($_POST['ViewAVenue'])) {
         
         // check if it exist in database
-        $user = new BeerOwner($_SESSION['_id']);
-        $Venue = $user->ViewAVenue($_POST['_id']);
+        $VenueObj = new Venue();
+        $Venue = $VenueObj->ViewAVenue($_POST['_id']);
     }
 
     //Delete venue
     else if(isset($_POST['DeleteAVenue'])) {
-        $user = new BeerOwner($_SESSION['_id']);
-        $DeleteSuccess = $user->DeleteAVenue($_POST['_id']);
+        $VenueObj = new Venue();
+        $DeleteSuccess = $VenueObj->DeleteAVenue($_POST['_id']);
         if($DeleteSuccess == true){
             echo '<script>alert("Delete Successful.")</script>';
             header("Location: ViewAllVenues.php");

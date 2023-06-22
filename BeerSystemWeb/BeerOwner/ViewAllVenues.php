@@ -7,6 +7,7 @@ $path = $_SESSION['path'];
 //Inclusion of files
 require_once($path . '/Class/User.php');
 require_once($path . '/Class/BeerOwner.php');
+require_once($path . '/Class/Venue.php');
 
 //Mongodb client configuration
 require_once $path . '/vendor/autoload.php';
@@ -31,8 +32,8 @@ $user_id = $_SESSION['_id'];
 
     <table style="color: red" >    
     <?php
-        $BO = new BeerOwner($_SESSION['_id']);
-        $AllVenues = $BO->ViewAllVenues();
+        $VenueObj = new Venue();
+        $AllVenues = $VenueObj->ViewAllVenues();
 
         //From here for u to design
         foreach ($AllVenues as $Venue) {

@@ -1,4 +1,4 @@
-<!-- Class for User -->
+<!-- Class for Venue -->
 <?php
 	class Venue {
 		//Properties
@@ -11,11 +11,15 @@
 		protected $ownerid;
 
 		//Default constructor
-		public function __construct($_id){
-			$this->__construct($_id);
+		public function __construct(){
+			
 		}
 		
 		//Mutator method
+		public function set_id($_id){
+			$this->_id = $_id;
+		}
+		
 		public function setAddress($address){
 			$this->address = $address;
 		}
@@ -70,4 +74,48 @@
 			return $this->ownerid;
 		}
                 
+		public function ViewAllVenues(){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('BeerSystem','Venue');
+			
+			// Get all roles
+			$Venues = $collection->find();
+			
+			return $Venues;
+		}
+
+		public function ViewAVenue($venueid){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('BeerSystem','Venue');
+			
+			// Get all roles
+			$Venue = $collection->find(array('_id' => $venueid));
+			
+			return $Venue;
+		}
+
+		public function DeleteAVenue($venueid){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('BeerSystem','Venue');
+			
+			// Get all roles
+			$Venue = $collection->deleteOne(array('_id' => $venueid));
+			
+			if($Venue->getDeletedCount() == 1){
+				return true;
+			}
+			else{
+				return false;
+			}
+			
+		}
 }

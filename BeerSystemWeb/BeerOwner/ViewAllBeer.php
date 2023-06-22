@@ -7,6 +7,7 @@ $path = $_SESSION['path'];
 //Inclusion of files
 require_once($path . '/Class/User.php');
 require_once($path . '/Class/BeerOwner.php');
+require_once($path . '/Class/Beer.php');
 
 //Mongodb client configuration
 require_once $path . '/vendor/autoload.php';
@@ -31,8 +32,8 @@ $user_id = $_SESSION['_id'];
 
     <table style="color: red" >    
     <?php
-        $BO = new BeerOwner($_SESSION['_id']);
-        $AllBeers = $BO->ViewAllBeers();
+        $BeerObj = new Beer();
+        $AllBeers = $BeerObj->ViewAllBeers();
         $BeerCounter = 1;
 
        //From here for u to design

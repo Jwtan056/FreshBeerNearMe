@@ -7,6 +7,7 @@ $path = $_SESSION['path'];
 //Inclusion of files
 require_once($path . '/Class/User.php');
 require_once($path . '/Class/BeerOwner.php');
+require_once($path . '/Class/Promotion.php');
 
 //Mongodb client configuration
 require_once $path . '/vendor/autoload.php';
@@ -17,14 +18,15 @@ $error = ''; // Variable To Store Error Message
 if (isset($_POST['ViewAPromotion'])) {
     
     // check if it exist in database
-    $user = new BeerOwner($_SESSION['_id']);
-    $Promotions = $user->ViewAPromotion($_POST['_id']);
+    $PromotionObj = new Promotion();
+    $PromotionObj->setOwnerid($user_id);
+    $Promotions = $PromotionObj->ViewAPromotion($_POST['_id']);
 }
 
 //Delete Promotion
 else if(isset($_POST['DeleteAPromotion'])) {
-    $user = new BeerOwner($_SESSION['_id']);
-    $DeleteSuccess = $user->DeleteAPromotion($_POST['_id']);
+    $PromotionObj = new Promotion();
+    $DeleteSuccess = $PromotionObj->DeleteAPromotion($_POST['_id']);
     if($DeleteSuccess == true){
         echo '<script>alert("Delete Successful.")</script>';
         header("Location: ViewAllPromotions.php");
