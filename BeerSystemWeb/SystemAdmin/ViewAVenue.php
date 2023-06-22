@@ -38,18 +38,18 @@
 ?>
 
 <script>
-function DeleteVenue() {
-  if (confirm("Confirm to delete?") == true) {
-    document.getElementById("submit-button").click();
-  }
-}
+    function DeleteVenue() {
+    if (confirm("Confirm to delete?") == true) {
+        document.getElementById("submit-button").click();
+    }
+    }
 </script>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Administrator Homepage</title>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="../style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -89,49 +89,6 @@ function DeleteVenue() {
                 $daycounter += 1;
             } 
         } 
-        
-        //Beer Information
-        if(count($VenueInfo['beer']) == 0){ 
-             echo "<tr><td>No Beers Available</tr></td>";  } 
-        else { 
-            foreach ($VenueInfo['beer'] as $beer) { 
-                    $bid = $beer['beerid'];
-                    echo "<tr><td>Beer Name: $bid </tr></td>";
-                    $bfreshness = $beer['freshness'];
-                    echo "<tr><td>Beer Freshness: $bfreshness </tr></td>";
-                    $btemp = $beer['temperature'];
-                    echo "<tr><td>Beer Temperature: $btemp </tr></td>";
-                }    
-        } 
-        
-        //Promotion
-        if(count($VenueInfo['promotionid']) == 0){ 
-            echo "<tr><td>No promotions Available</tr></td>";
-        } 
-        else { 
-            foreach ($VenueInfo['promotionid'] as $promotion) { 
-                    echo "<tr><td>PromotionID: $promotion </tr></td>";
-                }
-         } 
-        
-        echo "<tr><td>OwnerID: " . $VenueInfo['ownerid'] . "</tr></td>"; 
-
-        //Location with their x and y
-        foreach ($VenueInfo['location'] as $coordinates) {  
-            $count = 0;
-            $x = "";
-            $y = "";
-            foreach ($coordinates as $xy) {
-                if ($count == 0){
-                    $x = $xy;
-                }
-                else{
-                    $y = $xy;
-                }
-                $count++;
-            }
-            echo "<tr><td>Location(x: $x,y: $y) </tr></td>";
-        }
         
         echo '<tr><td><input type="button" value="Delete" onclick="DeleteVenue()"/></td></tr>';
         echo '<tr><td><input type="submit" name="DeleteAVenue" id="submit-button" style="visibility: hidden;"/></td></tr>';

@@ -370,7 +370,7 @@ a:hover {
 
 .navbar-b.navbar-trans .nav-link,
 .navbar-b.navbar-reduce .nav-link {
-  color: #fff;
+  color: #1B1B1B;
   text-transform: uppercase;
   font-weight: 600;
 }
@@ -458,7 +458,7 @@ a:hover {
 }
 
 .navbar-b .navbar-brand {
-  color: #fff;
+  color: #1B1B1B;
   font-size: 1.6rem;
   font-weight: 600;
 }
@@ -483,12 +483,12 @@ a:hover {
 
 .navbar-b .dropdown-menu .dropdown-item:hover {
   background-color: #0078ff;
-  color: #fff;
+  color: #1B1B1B;
   transition: all 500ms ease;
 }
 
 .navbar-b .dropdown-menu .dropdown-item.active {
-  background-color: #0078ff;
+  background-color: #1B1B1B;
 }
 
 /*--/ Hamburger Navbar /--*/
@@ -504,7 +504,7 @@ a:hover {
 
 .navbar-toggler span {
   display: block;
-  background-color: #fff;
+  background-color: #1B1B1B;
   height: 3px;
   width: 25px;
   margin-top: 4px;

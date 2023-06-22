@@ -26,7 +26,7 @@ $user_id = $_SESSION['_id'];
     <link href="style.css" rel="stylesheet" type="text/css">
     
     <div class="container" id="homepage">
-        <link href="/FYP/style.css" rel="stylesheet" type="text/css">
+        <link href="../style.css" rel="stylesheet" type="text/css">
         <h1><h1><?php echo "Welcome $user_id!"?> </h1></h1>
     </div>
 

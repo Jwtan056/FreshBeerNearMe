@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-session_start();
-$path = $_SESSION['path'];
+    session_start();
+    $path = $_SESSION['path'];
 
-//Inclusion of files
-require_once($path . '/Class/User.php');
-require_once($path . '/Class/SystemAdmin.php');
+    //Inclusion of files
+    require_once($path . '/Class/User.php');
+    require_once($path . '/Class/SystemAdmin.php');
 
-//Mongodb client configuration
-require_once $path . '/vendor/autoload.php';
+    //Mongodb client configuration
+    require_once $path . '/vendor/autoload.php';
 
-$user_id = $_SESSION['_id'];
+    $user_id = $_SESSION['_id'];
 
-if(isset($_POST['submit_btn']))
-{
-//whatever u need to do
-}
+    if(isset($_POST['submit_btn']))
+    {
+    //whatever u need to do
+    }
 
 ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User</title>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="../style.css" rel="stylesheet" type="text/css">
 
 <style>
 </style>

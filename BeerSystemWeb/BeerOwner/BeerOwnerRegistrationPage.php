@@ -38,7 +38,7 @@ $user_id = $_SESSION['_id'];
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
 	<!-- CSS Stylesheets-->
-	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="../style.css" rel="stylesheet" type="text/css">
 </head>
 
 <script>

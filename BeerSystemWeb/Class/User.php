@@ -26,46 +26,6 @@ class User
 		return $this->_id;
 	}
 
-	public function getfirstName()
-	{
-		return $this->fname;
-	}
-
-	public function getlastName()
-	{
-		return $this->lname;
-	}
-
-	public function getContact()
-	{
-		return $this->contact;
-	}
-
-	public function getDob()
-	{
-		return $this->dob;
-	}
-
-	public function getEmail()
-	{
-		return $this->email;
-	}
-
-	public function getGender()
-	{
-		return $this->gender;
-	}
-
-	public function getProfile()
-	{
-		return $this->profile;
-	}
-
-	public function getRole()
-	{
-		return $this->role;
-	}
-
 	//Mutator methods
 	public function setfirstName($fname)
 	{

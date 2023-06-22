@@ -24,7 +24,7 @@ $user_id = $_SESSION['_id'];
 
 <body>
     <?php include 'boNavbar.php' ?>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="../style.css" rel="stylesheet" type="text/css">
     
     <div class="container" id="homepage">
         <h1><?php echo "All Venues"?> </h1>

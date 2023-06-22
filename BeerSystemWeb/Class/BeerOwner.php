@@ -12,11 +12,6 @@
 		public function setBusinessName($businessname){
 			$this->businessname = $businessname;
 		}
-		
-		//Accessor method
-		public function getBusinessName(){
-			return $this->businessname;
-		}
 
 		//Register user account
 		public function RegisterBeerOwner(){
