@@ -20,8 +20,8 @@ $user_id = $_SESSION['_id'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Beers</title>
     <link href="../style.css" rel="stylesheet" type="text/css">
-    <style>
-        #saBeer {
+        <style>
+        #saVenue {
             margin-left: auto;
             margin-right: auto;
             width: 800px;
@@ -35,14 +35,14 @@ $user_id = $_SESSION['_id'];
             margin-right: auto;
         }
 
-        #saBeer th,
-        #saBeer td {
+        #saVenue th,
+        #saVenue td {
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #000000;
         }
 
-        #beer-id {
+        #venue-id {
             color: black;
         }
 
@@ -56,39 +56,29 @@ $user_id = $_SESSION['_id'];
 
 <body>
     <?php include 'navbar.php' ?>
-    <link href="../style.css" rel="stylesheet" type="text/css">
-    <div class="container">
-        <h1>
-            <?php echo "All Beers" ?>
-        </h1>
-        <table id="saBeer">
-            <tbody>
-                <?php
-                    $BeerObj = new Beer();
-                    $AllBeers = $BeerObj->ViewAllBeers();
-                    $BeerCounter = 1;
 
-                foreach ($AllBeers as $Beer) {
-                    ?>
-                    <tr>
-                        <td>
-                            <span id="beer-id">
-                                <?php echo "Beer #$BeerCounter: " . $Beer['_id']; ?>
-                            </span>
-                        </td>
-                        <td>
-                            <form action="ViewABeerListing.php" method="POST"> 
-                                <input id="name" name="_id" type="hidden" value="<?php echo $Beer['_id']; ?>">
-                                <?php
-                                $BeerCounter += 1;
-                                echo '<form type="POST"><input type="submit" name="ViewABeer" value="View"></form>';
-                                ?>
-                            </form>
-                        </td>
-                    </tr>
-                <?php }; ?>
-            </tbody>
-        </table>
+    <div class="container" id="homepage">
+        <h1><?php echo "All Beers"?> </h1>
     </div>
+
+    <table id="saVenue"> 
+        
+    ///////       
+    <?php
+        $BeerObj = new Beer();
+        $AllBeers = $BeerObj->ViewAllBeers();
+        $BeerCounter = 1;
+
+        //From here for u to design
+        foreach ($AllBeers as $Beer) {
+            ?><tr> <form action="ViewABeerListing.php" method="POST"> 
+            <td><?php 
+            //Theres a stupid nonsense here that cannot print beer name so imma comment it and fix next time
+            echo "Beer #$BeerCounter: " . $Beer['_id']?><input id="name" name="_id" type="hidden" value="<?php echo $Beer['_id']; ?>"></td>
+            <td><?php
+                $BeerCounter += 1;
+                echo '<form type="POST"><input type="submit" name="ViewABeer" value="View"></form>';
+            }; ?> </form></td></tr>
+    </table>
 </body>
 </html>

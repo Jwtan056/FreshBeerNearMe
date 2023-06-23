@@ -54,12 +54,14 @@
 
 <body>
     <?php include 'navbar.php' ?>
+    <link href="style.css" rel="stylesheet" type="text/css">
 
     <div class="container" id="homepage">
         <h1>View A Venue</h1>
     </div>
 
-    <table style="color:white"><form action="ViewAVenue.php" method="POST">
+    <table id="saVenue">
+    <form action="ViewAVenue.php" method="POST">
     <?php foreach ($Venue as $VenueInfo) { ?>
          <input id="name" name="_id" type="hidden" value="<?php echo $VenueInfo['_id']; ?>">
     <?php
@@ -93,6 +95,7 @@
         echo '<tr><td><input type="button" value="Delete" onclick="DeleteVenue()"/></td></tr>';
         echo '<tr><td><input type="submit" name="DeleteAVenue" id="submit-button" style="visibility: hidden;"/></td></tr>';
     }?> 
-    </form></table>
+    </form>
+    </table>
 </body>
 </html>

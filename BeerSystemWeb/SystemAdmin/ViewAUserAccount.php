@@ -58,7 +58,8 @@ function DeleteUser() {
         <h1>View A User</h1>
     </div>
 
-    <table style="color:blue"><form action="ViewAUserAccount.php" method="POST">
+    <table id="saVenue">
+    <form action="ViewAUserAccount.php" method="POST">
     <?php foreach ($UserAccount as $User) { ?>
         <input id="name" name="_id" type="hidden" value="<?php echo $User['_id']; ?>">
     <?php

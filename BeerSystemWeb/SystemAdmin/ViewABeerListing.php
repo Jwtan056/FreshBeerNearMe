@@ -58,7 +58,8 @@ function DeleteBeer() {
         <h1>View A Beer</h1>
     </div>
 
-    <table style="color:white"><form action="ViewABeerListing.php" method="POST">
+    <table id="saVenue">
+    <form action="ViewABeerListing.php" method="POST">
     <?php foreach ($Beer as $BeerInfo) { ?>
         <input id="name" name="_id" type="hidden" value="<?php echo $BeerInfo['_id']; ?>">
     <?php

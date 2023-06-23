@@ -24,34 +24,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User</title>
     <link href="../style.css" rel="stylesheet" type="text/css">
+    <style>
+        #saVenue {
+            margin-left: auto;
+            margin-right: auto;
+            width: 800px;
+            background-color: #d6d6d6;
+            float: center;
+            border-radius: 10px;
+            border: solid #d6d6d6;
+            padding: 10px 40px 25px;
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-<style>
-</style>
+        #saVenue th,
+        #saVenue td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #000000;
+        }
+
+        #venue-id {
+            color: black;
+        }
+
+        #view-button {
+            padding: 2px 4px;
+            font-size: 8px;
+            text-align: right;
+        }
+    </style>
 </head>
 <body>
     <?php include 'navbar.php' ?>
     <div class="container" id="users">
-        <p>Users</p>
+        <h1>All Users</h1>
     </div>
 
-    <table style="color: red" >    
-    <?php
+    <table id="saVenue">
+    <tbody>
+        <?php
         $SysAdmin = new SystemAdmin($_SESSION['_id']);
         $UserAccounts = $SysAdmin->ViewAllUsers();
 
         //From here for u to design
         foreach ($UserAccounts as $User) {
-            ?><tr> <form action="ViewAUserAccount.php" method="POST">
-            <td><input id="name" name="_id" type="hidden" value="<?php echo $User['_id']; ?>"></td>
-            <td><?php
-            echo $User['firstname']; ?> </td>
-            <td><?php
-            echo $User['lastname']; ?> </td>
-            <td><?php
-            echo $User['email']; ?> </td>
+        ?>
+        <tr>
+        <form action="ViewAUserAccount.php" method="POST">
+            <td>
+                <input id="name" name="_id" type="hidden" value="<?php echo $User['_id']; ?>">
+                <br>
+                <?php echo $User['firstname']; ?>
+                <br>
+                <?php echo $User['lastname']; ?>
+                <br>
+                <?php echo $User['email']; ?>
+            </td>
             <td><?php
             echo '<form type="POST"><input type="submit" name="ViewAUser" value="View"></form>';
-            }; ?> </form></td></tr>
+            }; ?> </form></td>
+        </tr>
+    </tbody>
     </table>
 </body>
 </html>
