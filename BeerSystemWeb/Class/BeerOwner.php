@@ -19,7 +19,7 @@
 			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
 			
 			// Selection of database and collection
-			$collection = $client->selectCollection('BeerSystem','User');
+			$collection = $client->selectCollection('FreshBeerNearMe','User');
 			
 			$exists = $collection->findOne(array('_id' => $this->_id));
 
@@ -45,8 +45,6 @@
 
 				return true;
 			}
-
-			
 		}
 		
 	}

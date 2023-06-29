@@ -2,15 +2,14 @@
 <html lang="en">
     <?php
     session_start();
-    $path = $_SESSION['path'];
 
     // Inclusion of files
-    require_once($path . '/Class/User.php');
-    require_once($path . '/Class/BeerOwner.php');
-    require_once($path . '/Class/Promotion.php');
+    require_once('../Class/User.php');
+    require_once('../Class/BeerOwner.php');
+    require_once('../Class/Promotion.php');
 
     // Mongodb client configuration
-    require_once $path . '/vendor/autoload.php';
+    require_once '../vendor/autoload.php';
 
     $user_id = $_SESSION['_id'];
     ?>
@@ -18,7 +17,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>View All Promotions</title>
-        <link href="style.css" rel="stylesheet" type="text/css">
+        <link href="../style.css" rel="stylesheet" type="text/css">
         <style>
             /* CSS styling for the table */
             .venue-table {
@@ -56,7 +55,7 @@
 
     <body>
         <?php include 'boNavbar.php' ?>
-        <link href="style.css" rel="stylesheet" type="text/css">
+        <link href="../style.css" rel="stylesheet" type="text/css">
 
         <div class="container" id="homepage">
             <h1>All Promotions</h1>

@@ -2,14 +2,13 @@
 <html lang="en">
 <?php
 session_start();
-$path = $_SESSION['path'];
 
 //Inclusion of files
-require_once($path . '/Class/User.php');
-require_once($path . '/Class/SystemAdmin.php');
+require_once('../Class/User.php');
+require_once('../Class/SystemAdmin.php');
 
 //Mongodb client configuration
-require_once $path . '/vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 $user_id = $_SESSION['_id'];
 

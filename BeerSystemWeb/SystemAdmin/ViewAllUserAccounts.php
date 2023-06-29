@@ -5,17 +5,18 @@
     $path = $_SESSION['path'];
 
     //Inclusion of files
-    require_once($path . '/Class/User.php');
-    require_once($path . '/Class/SystemAdmin.php');
+    require_once('../Class/User.php');
+    require_once('../Class/SystemAdmin.php');
 
     //Mongodb client configuration
-    require_once $path . '/vendor/autoload.php';
+    require_once '../vendor/autoload.php';
 
-    $user_id = $_SESSION['_id'];
+    $SysAdmin = new SystemAdmin($_SESSION['_id']);
+    $UserAccounts = $SysAdmin->ViewAllUsers();
 
-    if(isset($_POST['submit_btn']))
-    {
-    //whatever u need to do
+    if (isset($_POST['SearchAUser'])) {
+        // check if it exist in database
+        $UserAccounts = $SysAdmin->SearchUserAccount($_POST['searchterm']);
     }
 
 ?>
@@ -24,38 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User</title>
     <link href="../style.css" rel="stylesheet" type="text/css">
-    <style>
-        #saVenue {
-            margin-left: auto;
-            margin-right: auto;
-            width: 800px;
-            background-color: #d6d6d6;
-            float: center;
-            border-radius: 10px;
-            border: solid #d6d6d6;
-            padding: 10px 40px 25px;
-            margin-top: 50px;
-            margin-left: auto;
-            margin-right: auto;
-        }
 
-        #saVenue th,
-        #saVenue td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #000000;
-        }
-
-        #venue-id {
-            color: black;
-        }
-
-        #view-button {
-            padding: 2px 4px;
-            font-size: 8px;
-            text-align: right;
-        }
-    </style>
 </head>
 <body>
     <?php include 'navbar.php' ?>
@@ -66,9 +36,6 @@
     <table id="saVenue">
     <tbody>
         <?php
-        $SysAdmin = new SystemAdmin($_SESSION['_id']);
-        $UserAccounts = $SysAdmin->ViewAllUsers();
-
         //From here for u to design
         foreach ($UserAccounts as $User) {
         ?>
@@ -86,6 +53,19 @@
             <td><?php
             echo '<form type="POST"><input type="submit" name="ViewAUser" value="View"></form>';
             }; ?> </form></td>
+        </tr>
+        <tr>
+        <form action="CreateUserAccount.php" method="POST">
+            <td><?php
+            echo '<form type="POST"><input type="submit" name="CreateAUser" value="Create User Account"></form>';
+             ?> </form></td>
+        </tr>
+        <tr>
+        <form action="ViewAllUserAccounts.php" method="POST">
+            <td><?php
+            echo "<input type='text' name='searchterm'>";
+            echo '<form type="POST"><input type="submit" name="SearchAUser" value="Search"></form>';
+             ?> </form></td>
         </tr>
     </tbody>
     </table>

@@ -10,8 +10,8 @@
 ======================================*/
 
 body {
-  background-color: #000000;
-  color: #000000;
+  background-color: #f5f5f5;
+  color: #4e4e4e;
 }
 
 h1,
@@ -193,12 +193,62 @@ a:hover {
 .box-shadow-full {
   padding: 3rem 1.25rem;
   position: relative;
-  background-color: #1e1e1e;
+  background-color: #fff;
   margin-bottom: 3rem;
   z-index: 2;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
+/*------/ Socials /------*/
+
+.socials {
+  padding: 1.5rem 0;
+}
+
+.socials ul li {
+  display: inline-block;
+}
+
+.socials .ico-circle {
+  height: 40px;
+  width: 40px;
+  font-size: 1.7rem;
+  border-radius: 50%;
+  line-height: 1.4;
+  margin: 0 15px 0 0;
+  box-shadow: 0 0 0 3px #0078ff;
+  transition: all 500ms ease;
+}
+
+.socials .ico-circle:hover {
+  background-color: #0078ff;
+  color: #fff;
+  box-shadow: 0 0 0 3px #cde1f8;
+  transition: all 500ms ease;
+}
+
+/*------/ Ul resect /------*/
+
+.ul-resect,
+.socials ul,
+.list-ico,
+.blog-wrapper .post-meta ul,
+.box-comments .list-comments,
+.widget-sidebar .list-sidebar,
+.widget-tags ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.list-ico {
+  line-height: 2;
+}
+
+.list-ico span {
+  color: #0078ff;
+  margin-right: 10px;
+}
 
 /*------/ Ico Circle /------*/
 
@@ -276,7 +326,7 @@ a:hover {
 .back-to-top {
   position: fixed;
   display: none;
-  background: #000000;
+  background: #0078ff;
   color: #fff;
   width: 44px;
   height: 44px;
@@ -370,7 +420,7 @@ a:hover {
 
 .navbar-b.navbar-trans .nav-link,
 .navbar-b.navbar-reduce .nav-link {
-  color: #1B1B1B;
+  color: #fff;
   text-transform: uppercase;
   font-weight: 600;
 }
@@ -409,48 +459,48 @@ a:hover {
 }
 
 .navbar-b.navbar-trans .nav-link:before {
-  background-color: #1B1B1B;
+  background-color: #fff;
 }
 
 .navbar-b.navbar-trans .nav-link:hover {
-  color: #1B1B1B;
+  color: #fff;
 }
 
 .navbar-b.navbar-trans .show > .nav-link,
 .navbar-b.navbar-trans .active > .nav-link,
 .navbar-b.navbar-trans .nav-link.show,
 .navbar-b.navbar-trans .nav-link.active {
-  color: #1B1B1B;
+  color: #fff;
 }
 
 .navbar-b.navbar-reduce {
   transition: all .5s ease-in-out;
-  background-color: #1B1B1B;
+  background-color: #fff;
   padding-top: 15px;
   padding-bottom: 15px;
 }
 
 .navbar-b.navbar-reduce .nav-link {
-  color: #1B1B1B;
+  color: #0078ff;
 }
 
 .navbar-b.navbar-reduce .nav-link:before {
-  background-color: #1B1B1B;
+  background-color: #0078ff;
 }
 
 .navbar-b.navbar-reduce .nav-link:hover {
-  color: #1B1B1B;
+  color: #0078ff;
 }
 
 .navbar-b.navbar-reduce .show > .nav-link,
 .navbar-b.navbar-reduce .active > .nav-link,
 .navbar-b.navbar-reduce .nav-link.show,
 .navbar-b.navbar-reduce .nav-link.active {
-  color: #1B1B1B;
+  color: #0078ff;
 }
 
 .navbar-b.navbar-reduce .navbar-brand {
-  color: #1B1B1B;
+  color: #0078ff;
 }
 
 .navbar-b.navbar-reduce .navbar-toggler span {
@@ -458,7 +508,7 @@ a:hover {
 }
 
 .navbar-b .navbar-brand {
-  color: #1B1B1B;
+  color: #fff;
   font-size: 1.6rem;
   font-weight: 600;
 }
@@ -483,12 +533,12 @@ a:hover {
 
 .navbar-b .dropdown-menu .dropdown-item:hover {
   background-color: #0078ff;
-  color: #1B1B1B;
+  color: #fff;
   transition: all 500ms ease;
 }
 
 .navbar-b .dropdown-menu .dropdown-item.active {
-  background-color: #1B1B1B;
+  background-color: #0078ff;
 }
 
 /*--/ Hamburger Navbar /--*/
@@ -504,7 +554,7 @@ a:hover {
 
 .navbar-toggler span {
   display: block;
-  background-color: #1B1B1B;
+  background-color: #fff;
   height: 3px;
   width: 25px;
   margin-top: 4px;
@@ -639,7 +689,7 @@ a:hover {
 }
 
 .skill-mf .progress {
-  background-color: #000000;
+  background-color: #cde1f8;
   margin: .5rem 0 1.2rem 0;
   border-radius: 0;
   height: .7rem;
@@ -647,7 +697,7 @@ a:hover {
 
 .skill-mf .progress .progress-bar {
   height: .7rem;
-  background-color: #000000;
+  background-color: #0078ff;
 }
 
 /*======================================
@@ -686,7 +736,7 @@ a:hover {
 }
 
 .service-box .s-description {
-  color: #1e1e1e;
+  color: #4e4e4e;
 }
 
 /*======================================

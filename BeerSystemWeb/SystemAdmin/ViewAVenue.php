@@ -2,15 +2,14 @@
 <html lang="en">
 <?php
     session_start();
-    $path = $_SESSION['path'];
 
     //Inclusion of files
-    require_once($path . '/Class/User.php');
-    require_once($path . '/Class/SystemAdmin.php');
-    require_once($path . '/Class/Venue.php');
+    require_once('../Class/User.php');
+    require_once('../Class/SystemAdmin.php');
+    require_once('../Class/Venue.php');
 
     //Mongodb client configuration
-    require_once $path . '/vendor/autoload.php';
+    require_once '../vendor/autoload.php';
 
     $user_id = $_SESSION['_id'];
 
@@ -48,13 +47,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Administrator Homepage</title>
+    <title>View A Venue</title>
     <link href="../style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <?php include 'navbar.php' ?>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="../style.css" rel="stylesheet" type="text/css">
 
     <div class="container" id="homepage">
         <h1>View A Venue</h1>
@@ -69,29 +68,33 @@
         echo "<tr><td>Address: " . $VenueInfo['address'] . "</tr></td>";
         echo "<tr><td>Contact Number: " . $VenueInfo['contact'] . "</tr></td>";
         
-        //Opening hours
-        if(count($VenueInfo['opening']) == 0){ 
-            echo "<tr><td>Opening: No Opening hours available" . "</tr></td>";
+        //Opening day and hours
+        if(count($VenueInfo['days']) == 0){ 
+            echo "<tr><td>Opening Days: No Opening Days available</tr></td>";
         } 
         else { 
-            $daycounter = 0;
-            foreach ($VenueInfo['opening'] as $day) {  
-                foreach ($day as $openinghours) {
-                    foreach ($openinghours as $time) {
-                        if (array_key_exists("open",(array) $time)){
-                            $open = $time['open'];
-                        }
-                        else{
-                            $close = $time['close'];
-                        }
-                    }
-                    $theday = current(array_keys((array)$day));
-                    echo "<tr><td>$theday Opening Hours: $open - $close </tr></td>";
-                }
-                $daycounter += 1;
-            } 
+            $days = [];
+            foreach($VenueInfo['days'] as $openingdays){
+                array_push($days, $openingdays);
+            }
+            echo "<tr><td>Opening Days: ". implode(", ",$days) . "</tr></td>";
         } 
-        
+        echo "<tr><td>Opening Hours: " . $VenueInfo['opentime'] . "-" . $VenueInfo['closetime'] . " </tr></td>";
+
+        //Promotions
+        if(count($VenueInfo['promotionid']) == 0){ 
+            echo "<tr><td>Promotion ID: No promotions available</tr></td>";
+        } 
+        else { 
+            $promotions = [];
+            foreach($VenueInfo['promotionid'] as $Promos){
+                array_push($promotions, $Promos);
+            }
+            echo "<tr><td>Promotion ID: ". implode(", ",$promotions) . "</tr></td>";
+        } 
+
+        echo "<tr><td>OwnerID: " . $VenueInfo['ownerid'] . "</tr></td>";
+
         echo '<tr><td><input type="button" value="Delete" onclick="DeleteVenue()"/></td></tr>';
         echo '<tr><td><input type="submit" name="DeleteAVenue" id="submit-button" style="visibility: hidden;"/></td></tr>';
     }?> 

@@ -2,14 +2,13 @@
 <html lang="en">
 <?php
 session_start();
-$path = $_SESSION['path'];
 
 //Inclusion of files
-require_once($path . '/Class/User.php');
-require_once($path . '/Class/BeerOwner.php');
+require_once('../Class/User.php');
+require_once('../Class/BeerOwner.php');
 
 //Mongodb client configuration
-require_once $path . '/vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 $user_id = $_SESSION['_id'];
 
@@ -23,7 +22,7 @@ $user_id = $_SESSION['_id'];
 
 <body>
     <?php include 'boNavbar.php' ?>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="../style.css" rel="stylesheet" type="text/css">
     
     <div class="container" id="homepage">
         <link href="../style.css" rel="stylesheet" type="text/css">

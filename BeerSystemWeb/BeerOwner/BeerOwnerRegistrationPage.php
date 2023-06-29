@@ -2,14 +2,13 @@
 <html>
 <?php
 session_start();
-$path = $_SESSION['path'];
 
 //Inclusion of files
-require_once($path . '/Class/User.php');
-require_once($path . '/Class/BeerOwner.php');
+require_once('../Class/User.php');
+require_once('../Class/BeerOwner.php');
 
 //Mongodb client configuration
-require_once $path . '/vendor/autoload.php';
+require_once ('../vendor/autoload.php');
 
 $user_id = $_SESSION['_id'];
 
@@ -22,7 +21,7 @@ $user_id = $_SESSION['_id'];
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
 	<!-- Javascripts -->
-	<script src="Utility.js"></script>
+	<script src="../Utility.js"></script>
 
 	<!-- bootstrap-->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -78,7 +77,6 @@ $user_id = $_SESSION['_id'];
 				echo '<script>alert("User Creation failed. User cannot use an existing username")</script>';
 			}
 			
-			
 		}
 
 		?>
@@ -91,7 +89,7 @@ $user_id = $_SESSION['_id'];
 				<p>Gender:
 					<input type='radio' value='M' name='Gender' required>M
 					<input type='radio' value='F' name='Gender'>F
-					<input type='radio' value='None' name='Gender'>N/A
+					<input type='radio' value='None' name='Gender' checked="checked">N/A
 				</p>
 				<p>Business Name:<input type='text' name='BusinessName' required></p>
 				<p>Email:<input type='email' name='Email' required></p>

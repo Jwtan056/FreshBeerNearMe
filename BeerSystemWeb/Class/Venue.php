@@ -5,10 +5,12 @@
         protected $_id;
 		protected $address;
 		protected $contact;
-		protected $opening;
-		protected $beer;
-		protected $promotionid;
+		protected $days;
 		protected $ownerid;
+		protected $opentime;
+		protected $closetime;
+		protected $location;
+
 
 		//Default constructor
 		public function __construct(){
@@ -28,20 +30,21 @@
 			$this->contact = $contact;
 		}
 
-		public function setOpening($opening){
-			$this->opening = $opening;
-		}
-
-		public function setBeer($beer){
-			$this->beer = $beer;
-		}
-
-		public function setPromotionid($promotionid){
-			$this->promotionid = $promotionid;
+		public function setDays($days){
+			$this->days = $days;
 		}
 
 		public function setOwnerid($ownerid){
 			$this->ownerid = $ownerid;
+		}
+		public function setOpentime($opentime){
+			$this->opentime = $opentime;
+		}
+		public function setClosetime($closetime){
+			$this->closetime = $closetime;
+		}
+		public function setLocation($location){
+			$this->location = $location;
 		}
                 
 		public function ViewAllVenues(){
@@ -49,10 +52,23 @@
 			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
 			
 			// Selection of database and collection
-			$collection = $client->selectCollection('BeerSystem','Venue');
+			$collection = $client->selectCollection('FreshBeerNearMe','Venue');
 			
 			// Get all roles
 			$Venues = $collection->find();
+			
+			return $Venues;
+		}
+
+		public function BOViewAllVenues($ownerid){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('FreshBeerNearMe','Venue');
+			
+			// Get all roles
+			$Venues = $collection->find(array('ownerid' => $ownerid));
 			
 			return $Venues;
 		}
@@ -62,7 +78,7 @@
 			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
 			
 			// Selection of database and collection
-			$collection = $client->selectCollection('BeerSystem','Venue');
+			$collection = $client->selectCollection('FreshBeerNearMe','Venue');
 			
 			// Get all roles
 			$Venue = $collection->find(array('_id' => $venueid));
@@ -75,7 +91,7 @@
 			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
 			
 			// Selection of database and collection
-			$collection = $client->selectCollection('BeerSystem','Venue');
+			$collection = $client->selectCollection('FreshBeerNearMe','Venue');
 			
 			// Get all roles
 			$Venue = $collection->deleteOne(array('_id' => $venueid));
@@ -87,5 +103,76 @@
 				return false;
 			}
 			
+		}
+
+		//Search Venue
+		public function SearchVenue($searchterm, $ownerid){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('FreshBeerNearMe','Venue');
+
+			//In order to do text search, need to create index in the database.
+			$venue = $collection->find(['ownerid' => $ownerid,'$text' => ['$search' => $searchterm]]);
+
+			return $venue;
+		}
+
+		//Create A Venue
+		public function CreateVenue(){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('FreshBeerNearMe','Venue');
+			
+			$exists = $collection->findOne(array('_id' => $this->_id));
+
+			if ($exists != NULL and $exists['_id'] == $this->_id){
+				return false;
+			}
+			
+			else {
+				
+				//Insert into database
+				$insertuser = $collection->insertOne(array(
+					'_id' => $this->_id,
+					'ownerid' => $this->ownerid,
+					'address' => $this->address,
+					'contact' => $this->contact,
+					'location' => $this->location,
+					'days' => $this->days,
+					'closetime' =>$this->closetime,
+					'opentime' =>$this->opentime,
+					'promotionid' =>array()
+				));
+
+				return true;
+			}
+		}
+
+		//Create user accounts
+		public function EditVenue(){
+			// Database Connection
+			$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+			
+			// Selection of database and collection
+			$collection = $client->selectCollection('FreshBeerNearMe','Venue');
+				
+			//Insert into database
+			$insertuser = $collection->updateOne(
+				['_id' => $this->_id],
+				['$set' => [
+					'address' => $this->address,
+					'contact' => $this->contact,
+					'location' => $this->location,
+					'days' => $this->days,
+					'closetime' =>$this->closetime,
+					'opentime' =>$this->opentime
+				]]
+			);
+
+			return true;
 		}
 }

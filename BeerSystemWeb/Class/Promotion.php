@@ -65,7 +65,7 @@ class Promotion
 		$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
 		
 		// Selection of database and collection
-		$collection = $client->selectCollection('BeerSystem','Promotion');
+		$collection = $client->selectCollection('FreshBeerNearMe','Promotion');
 		
 		// Get all roles
 		$promotion = $collection->find(array('ownerid' => $this->ownerid));
@@ -78,7 +78,7 @@ class Promotion
 		$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
 		
 		// Selection of database and collection
-		$collection = $client->selectCollection('BeerSystem','Promotion');
+		$collection = $client->selectCollection('FreshBeerNearMe','Promotion');
 		
 		// Get all roles
 		$promotion = $collection->find(array('_id' => $pid,'ownerid' => $this->ownerid));
@@ -91,7 +91,7 @@ class Promotion
 		$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
 		
 		// Selection of database and collection
-		$collection = $client->selectCollection('BeerSystem','Promotion');
+		$collection = $client->selectCollection('FreshBeerNearMe','Promotion');
 		
 		// Get all roles
 		$promotion = $collection->deleteOne(array('_id' => $pid));

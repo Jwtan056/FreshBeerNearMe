@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    $path = $_SESSION['path'];
-
     //Mongodb client configuration
-    require_once $path . '/vendor/autoload.php';
+    require_once '../vendor/autoload.php';
 
     $user_id = $_SESSION['_id'];
 ?>

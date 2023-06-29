@@ -29,7 +29,7 @@
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <img width="30" height="30" src="https://img.icons8.com/material-rounded/30/user.png" alt="user"/><span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="../loginPage.php">Logout</a></li>
+                <li><a href="../LoginFile/login.php">Logout</a></li>
             </ul>
         </li>
         </ul>

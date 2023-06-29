@@ -2,15 +2,14 @@
 <html lang="en">
 <?php
 session_start();
-$path = $_SESSION['path'];
 
 //Inclusion of files
-require_once($path . '/Class/User.php');
-require_once($path . '/Class/SystemAdmin.php');
-require_once($path . '/Class/Beer.php');
+require_once('../Class/User.php');
+require_once('../Class/SystemAdmin.php');
+require_once('../Class/Beer.php');
 
 //Mongodb client configuration
-require_once $path . '/vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 $user_id = $_SESSION['_id'];
 
@@ -61,9 +60,7 @@ $user_id = $_SESSION['_id'];
         <h1><?php echo "All Beers"?> </h1>
     </div>
 
-    <table id="saVenue"> 
-        
-    ///////       
+    <table id="saVenue">      
     <?php
         $BeerObj = new Beer();
         $AllBeers = $BeerObj->ViewAllBeers();
@@ -73,7 +70,6 @@ $user_id = $_SESSION['_id'];
         foreach ($AllBeers as $Beer) {
             ?><tr> <form action="ViewABeerListing.php" method="POST"> 
             <td><?php 
-            //Theres a stupid nonsense here that cannot print beer name so imma comment it and fix next time
             echo "Beer #$BeerCounter: " . $Beer['_id']?><input id="name" name="_id" type="hidden" value="<?php echo $Beer['_id']; ?>"></td>
             <td><?php
                 $BeerCounter += 1;

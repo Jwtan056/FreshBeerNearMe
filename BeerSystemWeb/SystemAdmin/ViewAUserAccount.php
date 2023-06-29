@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-session_start();
-$path = $_SESSION['path'];
+    session_start();
 
-//Inclusion of files
-require_once($path . '/Class/User.php');
-require_once($path . '/Class/SystemAdmin.php');
+    //Inclusion of files
+    require_once('../Class/User.php');
+    require_once('../Class/SystemAdmin.php');
 
-//Mongodb client configuration
-require_once $path . '/vendor/autoload.php';
+    //Mongodb client configuration
+    require_once '../vendor/autoload.php';
 
-$user_id = $_SESSION['_id'];
+    $user_id = $_SESSION['_id'];
 
-$error = ''; // Variable To Store Error Message
-if (isset($_POST['ViewAUser'])) {
-    
-    // check if it exist in database
-    $user = new SystemAdmin($_SESSION['_id']);
-    $UserAccount = $user->ViewAUser($_POST['_id']);
-}
-
-//Delete user
-else if(isset($_POST['DeleteAUser'])) {
-    $user = new SystemAdmin($_SESSION['_id']);
-    $DeleteSuccess = $user->DeleteAUser($_POST['_id']);
-    if($DeleteSuccess == true){
-        echo '<script>alert("Delete Successful.")</script>';
-        header("Location: ViewAllUserAccounts.php");
+    $error = ''; // Variable To Store Error Message
+    if (isset($_POST['ViewAUser'])) {
+        
+        // check if it exist in database
+        $user = new SystemAdmin($_SESSION['_id']);
+        $UserAccount = $user->ViewAUser($_POST['_id']);
     }
-    else{
-        echo '<script>alert("Delete Failed.")</script>';
+
+    //Delete user
+    else if(isset($_POST['DeleteAUser'])) {
+        $user = new SystemAdmin($_SESSION['_id']);
+        $DeleteSuccess = $user->DeleteAUser($_POST['_id']);
+        if($DeleteSuccess == true){
+            echo '<script>alert("Delete Successful.")</script>';
+            header("Location: ViewAllUserAccounts.php");
+        }
+        else{
+            echo '<script>alert("Delete Failed.")</script>';
+        }
+        
     }
-    
-}
 ?>
 
 <script>
@@ -59,12 +58,10 @@ function DeleteUser() {
     </div>
 
     <table id="saVenue">
-    <form action="ViewAUserAccount.php" method="POST">
     <?php foreach ($UserAccount as $User) { ?>
         <input id="name" name="_id" type="hidden" value="<?php echo $User['_id']; ?>">
     <?php
         echo "<tr><td>Username: " . $User['_id'] . "</tr></td>";
-        echo "<tr><td>Password: " . $User['password'] . "</tr></td>"; 
         echo "<tr><td>First Name: " . $User['firstname'] . "</tr></td>"; 
         echo "<tr><td>Last Name: " . $User['lastname'] . "</tr></td>"; 
         echo "<tr><td>Gender: " . $User['gender'] . "</tr></td>"; 
@@ -74,11 +71,18 @@ function DeleteUser() {
         echo "<tr><td>Date Of Birth: " . $User['dob'] . "</tr></td>";
         if(isset($User['businessname']) == true){
             echo "<tr><td>Business Name: " . $User['businessname'] . "</tr></td>"; 
-        }
-        //use double quotes for js inside php!
+        } ?>
+        <form action="ViewAUserAccount.php" method="POST">
+        <input id="name" name="_id" type="hidden" value="<?php echo $User['_id']; ?>">
+        <?php
         echo '<tr><td><input type="button" value="Delete" onclick="DeleteUser()"/></td></tr>';
-        echo '<tr><td><input type="submit" name="DeleteAUser" id="submit-button" style="visibility: hidden;"/></td></tr>';
+        echo '<input type="submit" name="DeleteAUser" id="submit-button" style="visibility: hidden;"/>';
+        ?></form>
+        <form action="EditAUserAccount.php" method="POST">
+        <input id="name" name="_id" type="hidden" value="<?php echo $User['_id']; ?>"><?php
+        echo '<tr><td><input type="submit" name="ViewAUser" id="submit-button" value="Edit"/></td></tr>';
+        ?></form><?php
     }?> 
-    </form></table>
+    </table>
 </body>
 </html>

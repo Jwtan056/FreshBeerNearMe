@@ -12,7 +12,6 @@ class User
 	protected $email;
 	protected $gender;
 	protected $profile;
-	protected $role;
 
 	//Default constructor
 	public function __construct($_id)
@@ -69,7 +68,7 @@ class User
 		$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/test');
 
 		// Selection of database and collection
-		$database = $client->selectDatabase('BeerSystem');
+		$database = $client->selectDatabase('FreshBeerNearMe');
 		$collection = $database->selectCollection('User');
 		
 		// define query criteria -> retrieve id
@@ -87,6 +86,42 @@ class User
 		}
 
 	}
+
+	//Create user accounts
+	public function CreateUserAccount(){
+		// Database Connection
+		$client = new MongoDB\Client('mongodb+srv://phuasiqi:Password123@fyp-test.rv5527m.mongodb.net/?retryWrites=true&w=majority');
+		
+		// Selection of database and collection
+		$collection = $client->selectCollection('FreshBeerNearMe','User');
+		
+		$exists = $collection->findOne(array('_id' => $this->_id));
+
+		if ($exists != NULL and $exists['_id'] == $this->_id){
+			return false;
+		}
+		
+		else {
+			
+			//Insert into database
+			$insertuser = $collection->insertOne(array(
+				'_id' => $this->_id,
+				'password' => md5($this->password),
+				'firstname' => $this->fname,
+				'lastname' => $this->lname,
+				'gender' => $this->gender,
+				'contact' => $this->contact,
+				'profile' => 1,
+				'email' => $this->email,
+				'dob' => $this->dob,
+
+			));
+
+			return true;
+		}	
+	}
+
+	
 
 }
 ?>
